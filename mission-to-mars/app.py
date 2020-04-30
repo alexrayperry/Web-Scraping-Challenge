@@ -1,8 +1,10 @@
 # Import Dependencies
 
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 
-import pymongo
+from flask_pymongo import PyMongo
+
+import scrape_mars
 
 # Set up flask app
 
@@ -10,58 +12,26 @@ app = Flask(__name__)
 
 # Set up MongoDB Connection
 
-conn = 'mongodb://localhost:27017'
-
-# Pass connection to the pymongo instance. 
-
-client = pymongo.MongoClient(conn)
-
-# Example of connecting to db for flask
-
-db = client.store_inventory
-produce = db.produce
-
-# Connect to a database. Will create one if one is not available.
-
-db = client.database_name
-
-# Drops collection if available to remove duplicates
-
-db.collection_name.drop()
-
-# Creates a collection in the database and inserts documents
-
-db.collection_name.insert_many(
-    [
-        {
-            'player':"Jessica",
-            'position':"Point Guard"
-        },
-        {
-            'player': "mark",
-            'position':'bench'
-        }
-    ]
-)
-
-# Set Variables
+mongo = PyMongo(app, uri="mongodb://localhost:27017/mars")
 
 # Create route that renders index.html
 
 @app.route("/")
 def index():
-    # passing in list of dictionaries from finding collection in mongo
-    teams = list.(db.collection_name.find())
+    
+    mars_info = mongo.db.mars_collection.find()
 
-    # passing in dictionary variable
-    dictionary = [{"name": "Fido", "type":"Lab",}
-                    "name": "rex", "Type": "Collie"}]
+    return render_template("index.html", info=mars_info)
 
-    # write a statement that finds all the items in the db and sets it to a variable.
-    inventory = list(produce.find())
+@app.route("/scrape")
+def scrape():
+    
+    mars_data = scrape_mars.scrape()
 
-    return render_template("index.html", dict=dictionary OR teams=teams OR inventory=inventory)
+    mongo.db.mars_collection.update({}, mars_data, upsert=True)
 
+    return redirect("/")
 
 if __name__ == "__main__":
     app.run(debug=True)
+
