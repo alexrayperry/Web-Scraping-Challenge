@@ -26,9 +26,3 @@ mars_data = scrape_mars.scrape()
 
 db.mars_collection.insert_many([mars_data])
 
-# collection = db.mars_collection
-
-# results = collection.find({"news_title":"news_title"})
-
-# for result in results:
-#     print(result)

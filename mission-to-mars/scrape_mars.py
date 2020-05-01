@@ -20,7 +20,7 @@ def scrape():
     browser.visit(url)
 
     #Scrape the NASA Mars News Site and collect the latest News Title and Paragraph Text. Assign the text to variables that you can reference later.
-    news_title = browser.find_by_css('div[class="content_title"] a').text
+    news_title = browser.find_by_css('div[class="content_title"] a', wait_time=2).text
     news_p = browser.find_by_css('div[class="article_teaser_body"]').text
 
     # Visit JPL Space Images
@@ -85,10 +85,10 @@ def scrape():
     # Set titles and images to a list of dictionaries
 
     hemisphere_image_urls = [
-    {"title": title1, "img_url": img1},
-    {"title": title2, "img_url": img2},
-    {"title": title3, "img_url": img3},
-    {"title": title4, "img_url": img4}
+    {"title1": title1, "img_url1": img1},
+    {"title2": title2, "img_url2": img2},
+    {"title3": title3, "img_url3": img3},
+    {"title4": title4, "img_url4": img4}
      ]
 
     mars_data = {

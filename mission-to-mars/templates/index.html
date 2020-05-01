@@ -18,23 +18,18 @@
 
 <body>
 
-    <div class="container text-center">
-      
-      <div class="jumbotron">
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
       <h1>Mission to Mars</h1>
-      <br>
-      <button type="button" class="btn btn-primary" href="/scrape">Scrape for New Data!</button>
-      </div>
-    
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape for New Data!</a></p>
     </div>
+
 
     <div class="container">
       
       <h5>Latest Mars News</h5>
       <h6>{{ info.news_title }}</h6>
-      <p>The contents of the artile go Here. I am copying this here for an example. "Preparation of Nasa's nex spaccraft to 
-          Mars, InSigh has ramped p this summer, on course for launch next may from Vandenberg Airforce Base. 
-      </p>
+      <p>{{ info.news_text }}</p>
 
     </div>
 
@@ -46,7 +41,7 @@
 
         <div class="col-md-7 individual-display">
             <h5>Featured Mars Image</h5>
-            <img src="accident.png" class="img-fluid" style="max-width: 100%" alt="REVISE" />
+            <img src= {{ info.featured_img }} class="img-fluid" style="max-width: 100%" alt="featured-image" />
         </div>
 
         <div class="col-md-auto"></div>
@@ -55,13 +50,12 @@
             <div class="card">
                 <div class="card-body">
                     <h6 class="card-title">Current Weather on Mars</h6>
-                    <p>INSERT VARIABlE; THis is where you put your data that you data scrapped. this is
-                        just amd example.
-                    </p>
+                    <p>{{ info.mars_weather }}</p>
                 </div>
             </div>
             <br>
             <h6>Mars Facts</h6>
+           {{ info.mars_facts | safe}}
         </div>
 
       </div>
@@ -74,23 +68,25 @@
 
       <hr>
 
+      {% for item in info.hemisphere_images %}
+
       <div class="container">
         
-        <div row>
+        <div class="row">
          
           <div class="col-sm-6 individual-display">
 
-            <div class="card" class="img-fluid" style="max-width: 100%">
-              <img class="card-img-top" src="accident.png" alt="Card image cap">
+            <div class="card">
+              <img class="card-img-top img-fluid" style="max-width: 100%" src= {{ item.img_url1 }} alt="img1" />
               <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">{{ item.title1 }}</p>
               </div>
             </div>
 
-            <div class="card" class="img-fluid" style="max-width: 100%">
-              <img class="card-img-top" src="accident.png" alt="Card image cap">
+            <div class="card">
+              <img class="card-img-top img-fluid" style="max-width: 100%" src= {{ item.img_url2 }} alt="img2" />
               <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">{{ item.title2 }}</p>
               </div>
             </div>
 
@@ -100,17 +96,17 @@
 
           <div class="col-sm-6">
 
-            <div class="card" class="img-fluid" style="max-width: 100%">
-              <img class="card-img-top" src="accident.png" alt="Card image cap">
+            <div class="card">
+              <img class="card-img-top img-fluid" style="max-width: 100%" src= {{ item.img_url3 }} alt="img3" />
               <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">{{ item.title3 }}</p>
               </div>
             </div>
 
-            <div class="card" class="img-fluid" style="max-width: 100%">
-              <img class="card-img-top" src="accident.png" alt="Card image cap">
+            <div class="card">
+              <img class="card-img-top img-fluid" style="max-width: 100%" src= {{ item.img_url4 }} alt="img4" />
               <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">{{ item.title4 }}</p>
               </div>
             </div>
 
@@ -118,7 +114,7 @@
 
         </div>
 
-
+        {% endfor %}
         
       </div>
 
