@@ -9,7 +9,7 @@ Using Jupyter Notebook, BeautifulSoup, Pandas, and Requests/Splinter I have buil
 
 The first step was to scrape the NASA Mars website for the first headline title and its headline text using splinter and jupyter notebook.
 
-Next, I scrapped the NASA Jet Propulsion Laboratory sight to retrieve the featured image url.
+Next, I scrapped the NASA Jet Propulsion Laboratory website to retrieve the featured image url.
 
 After that, I scrapped the Mars Weather twitter account to retrieve the mars weather from the latest tweet.
 
@@ -23,13 +23,13 @@ Lastly, I scrpped Astrogeology website for text of the names of each hemisphere 
 
 After completing the web scraping and assigning mars info to specific variables, I used MongoDB with Flask templating to create a new HTML page that displays all of the information that was scraped from the URLs above.
 
-I created a python file that contained a "scrape" function to scrape for the information we scraped in our jupyter notebook and return this information in a variable containing a dictionary. 
+I created a python file (scrape_mars.py) that contained a "scrape" function to scrape for the information we scraped in our jupyter notebook and return this information in a variable containing a dictionary. 
 
-After creating the scrape function I created a separate python filed to called upon the scrape function in our previous python file and create/store the data in a Mongo Database. This step satisfied the completion of scraping webpages and store the informatoin in to MongoDB.
+After creating the scrape function I created a separate python file (insert_mongo.py) to called upon the scrape function in our previous python file and create/store the data in a Mongo Database. This step satisfied the completion of scraping webpages and storing the informatoin in to MongoDB.
 
-In order to serve the information in MongoDB to a html and flask application, I next had to create and html file and insert python variables that store our scraped data in to the html. These variables will be updated when we activate our flask application, which calls upon our scrape function. 
+In order to serve the information in MongoDB to a HTML and flask application, I next had to create an HTML file and insert python variables that store our scraped data in to the HTML. These variables will be updated when we activate our flask application, which calls upon our scrape function. 
 
-Lastly, I created another python file to run our flask application that scrapes the webpages for data related to Mars and displays the information in a single HTML page. Moreover, the webpage display a scrape button that can be clicked and will repeated the scraping process and update the HTML page with updated data.
+Lastly, I created another python file (app.py) to run our flask application that calls on the scrape function and scrapes the webpages for data related to Mars and displays the information in a single HTML page. Moreover, the webpage displays a button that can be clicked and will repeat the scraping process and update the HTML page with updated mars data.
 
 ![Webpage](webpage.png)
 
