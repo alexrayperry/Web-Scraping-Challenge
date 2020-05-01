@@ -49,17 +49,17 @@ def scrape():
     html_table_df = df.to_html()
     html_table = html_table_df.replace('\n', '') 
 
-    # Vist webpage to get images for Mars Hemispheres
+    # # Vist webpage to get images for Mars Hemispheres
     url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(url)
 
-    # Find Hemisphere title containing the hemisphere name.
+    # # Find Hemisphere title containing the hemisphere name.
     title1 = browser.find_by_css('div[class="item"]')[0].find_by_tag('h3').text
     title2 = browser.find_by_css('div[class="item"]')[1].find_by_tag('h3').text
     title3 = browser.find_by_css('div[class="item"]')[2].find_by_tag('h3').text
     title4 = browser.find_by_css('div[class="item"]')[3].find_by_tag('h3').text
 
-    # Browse through webpage to get image urls
+    # # Browse through webpage to get image urls
     link1 = browser.find_by_xpath('/html/body/div[1]/div[1]/div[2]/section/div/div[2]/div[1]/div/a/h3').click()
     open1 = browser.find_by_xpath('/html/body/div[1]/div[1]/div[2]/a').click()
     img1 = browser.find_by_css('div[class="downloads"]').find_by_tag('a')['href']
@@ -85,10 +85,10 @@ def scrape():
     # Set titles and images to a list of dictionaries
 
     hemisphere_image_urls = [
-    {"title1": title1, "img_url1": img1},
-    {"title2": title2, "img_url2": img2},
-    {"title3": title3, "img_url3": img3},
-    {"title4": title4, "img_url4": img4}
+    {"title": title1, "img_url": img1},
+    {"title": title2, "img_url": img2},
+    {"title": title3, "img_url": img3},
+    {"title": title4, "img_url": img4}
      ]
 
     mars_data = {

@@ -68,25 +68,27 @@
 
       <hr>
 
-      {% for item in info.hemisphere_images %}
+      
 
       <div class="container">
         
         <div class="row">
+
+          {% for item in info.hemisphere_images %}
          
           <div class="col-sm-6 individual-display">
 
             <div class="card">
-              <img class="card-img-top img-fluid" style="max-width: 100%" src= {{ item.img_url1 }} alt="img1" />
+              <img class="card-img-top img-fluid" style="max-width: 100%" src= {{ item.img_url }} alt="img1" />
               <div class="card-body">
-                <p class="card-text">{{ item.title1 }}</p>
+                <p class="card-text">{{ item.title }}</p>
               </div>
             </div>
 
             <div class="card">
-              <img class="card-img-top img-fluid" style="max-width: 100%" src= {{ item.img_url2 }} alt="img2" />
+              <img class="card-img-top img-fluid" style="max-width: 100%" src= {{ item.img_url }} alt="img2" />
               <div class="card-body">
-                <p class="card-text">{{ item.title2 }}</p>
+                <p class="card-text">{{ item.title }}</p>
               </div>
             </div>
 
@@ -97,24 +99,24 @@
           <div class="col-sm-6">
 
             <div class="card">
-              <img class="card-img-top img-fluid" style="max-width: 100%" src= {{ item.img_url3 }} alt="img3" />
+              <img class="card-img-top img-fluid" style="max-width: 100%" src= {{ item.img_url }} alt="img3" />
               <div class="card-body">
-                <p class="card-text">{{ item.title3 }}</p>
+                <p class="card-text">{{ item.title }}</p>
               </div>
             </div>
 
             <div class="card">
-              <img class="card-img-top img-fluid" style="max-width: 100%" src= {{ item.img_url4 }} alt="img4" />
+              <img class="card-img-top img-fluid" style="max-width: 100%" src= {{ item.img_url }} alt="img4" />
               <div class="card-body">
-                <p class="card-text">{{ item.title4 }}</p>
+                <p class="card-text">{{ item.title }}</p>
               </div>
             </div>
 
           </div>
 
-        </div>
+          {% endfor %}
 
-        {% endfor %}
+        </div>
         
       </div>
 
